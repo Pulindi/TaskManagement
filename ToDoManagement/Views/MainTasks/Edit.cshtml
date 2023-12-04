@@ -1,0 +1,39 @@
+﻿@model ToDoManagement.Models.MainTask
+
+<h2>Edit your task</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+            <div class="form-group">
+                <label asp-for="TaskLabel">Task Label</label>
+                <input asp-for="TaskLabel" class="form-control" />
+                <span asp-validation-for="TaskLabel" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TaskDescription">Task Description</label>
+                <textarea asp-for="TaskDescription" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="TaskDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-check">
+                <input asp-for="IsDone" class="form-check-input" />
+                <input type="hidden" asp-for="IsDone" value="false" /> <!-- Hidden field with a default value -->
+                <label class="form-check-label" asp-for="IsDone">Is Done</label>
+            </div>
+
+            <div class="form-check">
+                <input asp-for="IsPinned" class="form-check-input" />
+                <input type="hidden" asp-for="IsPinned" value="false" /> <!-- Hidden field with a default value -->
+                <label class="form-check-label" asp-for="IsPinned">Is Pinned</label>
+            </div>
+
+            <br />
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a asp-action="Index" class="btn btn-danger">Go Back</a>
+            </div>
+        </form>
+    </div>
+</div>

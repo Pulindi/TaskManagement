@@ -1,0 +1,95 @@
+﻿@model List<MainTask>
+
+<h2>Pinned Task</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Task Label</th>
+            <th>Task Description</th>
+            <th>Created At</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            @if (task.IsPinned)
+            {
+                <tr>
+                    <td>@task.TaskLabel</td>
+                    <td>@task.TaskDescription</td>
+                    <td>@task.CreatedAt</td>
+                    <td>
+                        @if (task.IsDone)
+                        {
+                            <img src="~/Done.png" width="30px" height="30px" />
+                        }
+                        else
+                        {
+                            <img src="~/Pending.png" width="30px" height="30px" />
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@task.Id">
+                            <svg width="35px" height="35px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 501.341 501.341" xml:space="preserve" fill="#000000"><title>Edit</title><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect x="51.2" y="28.804" style="fill:#BDC8C4;" width="402.133" height="472.533"></rect> <rect x="23.467" y="0.004" style="fill:#EBE9EA;" width="402.133" height="472.533"></rect> <circle style="fill:#637888;" cx="89.6" cy="144.004" r="19.2"></circle> <path style="fill:#F3B74B;" d="M89.6,135.47H8.533c-4.267,0-8.533,4.267-8.533,8.533s4.267,8.533,8.533,8.533H89.6 c4.267,0,8.533-4.267,8.533-8.533C98.133,139.737,93.867,135.47,89.6,135.47z"></path> <circle style="fill:#637888;" cx="89.6" cy="328.537" r="19.2"></circle> <path style="fill:#F3B74B;" d="M89.6,320.004H8.533c-4.267,0-8.533,4.267-8.533,8.533s4.267,8.533,8.533,8.533H89.6 c4.267,0,8.533-4.267,8.533-8.533C98.133,323.204,93.867,320.004,89.6,320.004z"></path> <path style="fill:#E14A4A;" d="M482.133,70.404L482.133,70.404c-20.267-14.933-49.067-9.6-64,10.667L342.4,188.804l74.667,52.267 L492.8,133.337C507.733,113.07,502.4,84.27,482.133,70.404z"></path> <polygon style="fill:#F16D6E;" points="344.533,189.87 235.733,345.604 306.133,395.737 416,240.004 "></polygon> <rect x="345.702" y="194.363" transform="matrix(-0.819 -0.5738 0.5738 -0.819 597.9821 586.9586)" style="fill:#EFC737;" width="91.734" height="9.6"></rect> <path style="fill:#F3B74B;" d="M484.267,66.137c-6.4-4.267-16-2.133-21.333,6.4L368,208.004c-5.333,7.467-4.267,18.133,1.067,22.4 c6.4,4.267,16,2.133,21.333-6.4l94.933-135.467C491.733,81.07,490.667,71.47,484.267,66.137z"></path> <polygon style="fill:#BECAC6;" points="306.133,395.737 235.733,345.604 216.533,420.27 241.067,437.337 "></polygon> <path style="fill:#3A5569;" d="M216.533,420.27l-4.267,16c-2.133,10.667,5.333,16,13.867,9.6l13.867-9.6L216.533,420.27z"></path> </g></svg>
+                        </a> &nbsp;&nbsp;&nbsp;
+                        <a asp-action="Delete" asp-route-id="@task.Id">
+                            <svg viewBox="0 0 1024 1024" width="35px" height="35px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><title>Delete</title><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M779.5 1002.7h-535c-64.3 0-116.5-52.3-116.5-116.5V170.7h768v715.5c0 64.2-52.3 116.5-116.5 116.5zM213.3 256v630.1c0 17.2 14 31.2 31.2 31.2h534.9c17.2 0 31.2-14 31.2-31.2V256H213.3z" fill="#FF0000"></path><path d="M917.3 256H106.7C83.1 256 64 236.9 64 213.3s19.1-42.7 42.7-42.7h810.7c23.6 0 42.7 19.1 42.7 42.7S940.9 256 917.3 256zM618.7 128H405.3c-23.6 0-42.7-19.1-42.7-42.7s19.1-42.7 42.7-42.7h213.3c23.6 0 42.7 19.1 42.7 42.7S642.2 128 618.7 128zM405.3 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7S448 403 448 426.6v256c0 23.6-19.1 42.7-42.7 42.7zM618.7 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v256c-0.1 23.6-19.2 42.7-42.7 42.7z" fill="#00000"></path></g></svg>
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h2>Tasks</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Task Label</th>
+            <th>Task Description</th>
+            <th>Created At</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            @if (!task.IsPinned)
+            {
+                <tr>
+                    <td>@task.TaskLabel</td>
+                    <td>@task.TaskDescription</td>
+                    <td>@task.CreatedAt</td>
+                    <td>
+                        @if (task.IsDone)
+                        {
+                            <img src="~/Done.png" width="30px" height="30px" />
+                        }
+                        else
+                        {
+                            <img src="~/Pending.png" width="30px" height="30px" />
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@task.Id">
+                            <svg width="35px" height="35px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 501.341 501.341" xml:space="preserve" fill="#000000"><title>Edit</title><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect x="51.2" y="28.804" style="fill:#BDC8C4;" width="402.133" height="472.533"></rect> <rect x="23.467" y="0.004" style="fill:#EBE9EA;" width="402.133" height="472.533"></rect> <circle style="fill:#637888;" cx="89.6" cy="144.004" r="19.2"></circle> <path style="fill:#F3B74B;" d="M89.6,135.47H8.533c-4.267,0-8.533,4.267-8.533,8.533s4.267,8.533,8.533,8.533H89.6 c4.267,0,8.533-4.267,8.533-8.533C98.133,139.737,93.867,135.47,89.6,135.47z"></path> <circle style="fill:#637888;" cx="89.6" cy="328.537" r="19.2"></circle> <path style="fill:#F3B74B;" d="M89.6,320.004H8.533c-4.267,0-8.533,4.267-8.533,8.533s4.267,8.533,8.533,8.533H89.6 c4.267,0,8.533-4.267,8.533-8.533C98.133,323.204,93.867,320.004,89.6,320.004z"></path> <path style="fill:#E14A4A;" d="M482.133,70.404L482.133,70.404c-20.267-14.933-49.067-9.6-64,10.667L342.4,188.804l74.667,52.267 L492.8,133.337C507.733,113.07,502.4,84.27,482.133,70.404z"></path> <polygon style="fill:#F16D6E;" points="344.533,189.87 235.733,345.604 306.133,395.737 416,240.004 "></polygon> <rect x="345.702" y="194.363" transform="matrix(-0.819 -0.5738 0.5738 -0.819 597.9821 586.9586)" style="fill:#EFC737;" width="91.734" height="9.6"></rect> <path style="fill:#F3B74B;" d="M484.267,66.137c-6.4-4.267-16-2.133-21.333,6.4L368,208.004c-5.333,7.467-4.267,18.133,1.067,22.4 c6.4,4.267,16,2.133,21.333-6.4l94.933-135.467C491.733,81.07,490.667,71.47,484.267,66.137z"></path> <polygon style="fill:#BECAC6;" points="306.133,395.737 235.733,345.604 216.533,420.27 241.067,437.337 "></polygon> <path style="fill:#3A5569;" d="M216.533,420.27l-4.267,16c-2.133,10.667,5.333,16,13.867,9.6l13.867-9.6L216.533,420.27z"></path> </g></svg>
+                        </a> &nbsp;&nbsp;&nbsp;
+                        <a asp-action="Delete" asp-route-id="@task.Id">
+                            <svg viewBox="0 0 1024 1024" width="35px" height="35px" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><title>Delete</title><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M779.5 1002.7h-535c-64.3 0-116.5-52.3-116.5-116.5V170.7h768v715.5c0 64.2-52.3 116.5-116.5 116.5zM213.3 256v630.1c0 17.2 14 31.2 31.2 31.2h534.9c17.2 0 31.2-14 31.2-31.2V256H213.3z" fill="#FF0000"></path><path d="M917.3 256H106.7C83.1 256 64 236.9 64 213.3s19.1-42.7 42.7-42.7h810.7c23.6 0 42.7 19.1 42.7 42.7S940.9 256 917.3 256zM618.7 128H405.3c-23.6 0-42.7-19.1-42.7-42.7s19.1-42.7 42.7-42.7h213.3c23.6 0 42.7 19.1 42.7 42.7S642.2 128 618.7 128zM405.3 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7S448 403 448 426.6v256c0 23.6-19.1 42.7-42.7 42.7zM618.7 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v256c-0.1 23.6-19.2 42.7-42.7 42.7z" fill="#00000"></path></g></svg>
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</div>
